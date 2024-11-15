@@ -1,0 +1,23 @@
+<app-encabezado titulo="alertas"></app-encabezado>
+
+<ion-content class="ion-padding">
+  <ion-text color="primary" class="ion-text-center">
+    <h1>Alertas</h1>
+  </ion-text>
+  <ion-button id="mostrar-alerta" expand="block" fill="solid">
+      Mostrar Alerta Inline
+  </ion-button>
+  <ion-alert
+  trigger="mostrar-alerta"
+  header="A Short Title Is Best"
+  subHeader="A Sub Header Is Optional"
+  message="A message should be a short, complete sentence."
+  [buttons]="alertButtons"
+  backdropDismiss="false"
+></ion-alert>
+
+
+<ion-button (click)="alerta()" expand="block" fill="solid" color="secondary">
+  Alerta con Alert Controller
+</ion-button>
+</ion-content>

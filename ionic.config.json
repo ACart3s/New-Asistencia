@@ -1,0 +1,7 @@
+{
+  "name": "elementos_ionic_s3",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
