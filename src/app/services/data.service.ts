@@ -44,7 +44,15 @@ export class DataService {
     return this.supabase
       .from('subject')
       .select('*')
-      .eq('idUsuario', 'idStudent');
+      .eq('idStudent', idUsuario);
   }
+
+  mostrarAsignaturas(idProfesor: string){
+    return this.supabase
+      .from('subject')
+      .select('*')
+      .eq('idDocente', idProfesor);
+  }
+  
 
 }
