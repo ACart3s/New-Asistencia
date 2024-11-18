@@ -1,0 +1,48 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>register</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content [fullscreen]="true">
+  <ion-content class="ion-padding">
+    <form (ngSubmit)="register()">
+      <ion-item>
+        <ion-label position="floating">Chanchi-Nombre</ion-label>
+        <ion-input 
+        type="name"
+        inputmode="name"
+        formControlName="name"
+        placeholder="Chanchito Perez"
+        required=""></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Correo electrónico</ion-label>
+        <ion-input
+          type="email"
+          inputmode="email"
+          formControlName="email"
+          placeholder="chanchi@chanchi.cl"
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+  
+      <ion-button expand="block" class="ion-margin-top">
+        Iniciar Sesión
+      </ion-button>
+    </form>
+  
+    <div class="ion-text-center ion-margin-top">
+      <ion-text color="medium"> ¿No tienes una cuenta? </ion-text>
+      <ion-button fill="clear">Regístrate</ion-button>
+    </div>
+  
+    <div class="ion-text-center">
+      <ion-button fill="clear" size="small">
+        ¿Olvidaste tu contraseña?
+      </ion-button>
+    </div>
+</ion-content>
