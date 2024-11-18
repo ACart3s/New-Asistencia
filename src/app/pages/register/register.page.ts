@@ -8,8 +8,11 @@ import { AlmacenamientoService } from '../almacenamiento.service';
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
+
 export class RegisterPage implements OnInit {
   registerForm: FormGroup;
+
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -18,19 +21,21 @@ export class RegisterPage implements OnInit {
     this.registerForm = this.formBuilder.group({
       name: ['', [Validators.minLength(15), Validators.required]],
       email: ['', [Validators.required]],
-      password: ['', [Validators.minLength(6), Validators.required]],
+      contra: ['', [Validators.minLength(6), Validators.required]],
     });
   }
 
   ngOnInit() {}
-  async register() {
+   register() {
+    console.log("entra la wea o no")
     if (this.registerForm.valid) {
-      const { name, email, password } = this.registerForm.value;
+      console.log("debugg")
+      const { name, email, contra } = this.registerForm.value;
       console.log('TEST QL', name);
       if (email.includes('@estudiante.cl')) {
-        this.router.navigate(['./alumno']);
+        this.router.navigate(['/alumno']);
       } else if (email.includes('@profesor.cl')) {
-        this.router.navigate(['./docente']);
+        this.router.navigate(['/docente']);
       } else {
         console.log('QUE AWEONAO SE EQUIVOCO');
       }
