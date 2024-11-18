@@ -16,7 +16,8 @@ export class LoginPage implements OnInit {
   constructor(
     private fb: FormBuilder,
 
-  ) { }
+  ) 
+  { }
   get email () {
     return this.credenciales.controls.email;
   }
