@@ -13,7 +13,7 @@ export class GenerateQrPage implements OnInit {
   ClasesNueva: Clases = {
     id: 0,
     schedule: '',
-    idAsignatura: 0,
+    idAsignatura: 0,    
     idAsistencia: 0,
   };
   QrSesion: any;
