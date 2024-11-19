@@ -40,13 +40,14 @@ export class DataService {
   }
 
   //O UN COMENTARIO QUE HARIA OTRA PERSONA
+  //Ver cursos de estudiante
   verCursos(idUsuario: string) {
     return this.supabase
       .from('subject')
       .select('*')
       .eq('idStudent', idUsuario);
   }
-
+//Ver cursos de profesor
   mostrarAsignaturas(idProfesor: string){
     return this.supabase
       .from('subject')
