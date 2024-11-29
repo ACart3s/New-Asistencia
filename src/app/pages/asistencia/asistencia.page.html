@@ -1,0 +1,40 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="calendar-outline" class="title-icon"></ion-icon>
+      Asistencia
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="attendance-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="time-outline" class="card-icon"></ion-icon>
+          Registro de Asistencia
+        </ion-card-title>
+        <ion-card-subtitle>
+          Historial de asistencias a clases
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let asistencias of asistencia" class="custom-item">
+            <ion-icon 
+              [name]="asistencias.status ? 'checkmark-circle-outline' : 'close-circle-outline'" 
+              [color]="asistencias.status ? 'success' : 'danger'"
+              slot="start"
+            ></ion-icon>
+            <ion-label>
+              <h2>{{asistencias.status ? "Chanchi-Presente" : "Chanchi-Ausente"}}</h2>
+              <p>Horario: {{asistencias.Class.schedule}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

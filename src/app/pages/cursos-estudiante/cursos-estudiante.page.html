@@ -1,0 +1,36 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="book-outline" class="title-icon"></ion-icon>
+      Cursos Estudiante
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="courses-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="list-outline" class="card-icon"></ion-icon>
+          Mis Cursos
+        </ion-card-title>
+        <ion-card-subtitle>
+          Lista de cursos en los que estás inscrito
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item *ngFor="let curso of clases" class="custom-item">
+            <ion-icon name="school-outline" slot="start"></ion-icon>
+            <ion-label>
+              <h2>{{curso.Subject.name}}</h2>
+              <p>Código: {{curso.Subject.Code}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

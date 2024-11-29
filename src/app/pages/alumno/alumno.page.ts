@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DataService } from 'src/app/services/data.service';
+import { AlmacenamientoService } from '../almacenamiento.service';
 
 @Component({
   selector: 'app-alumno',
@@ -6,10 +8,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./alumno.page.scss'],
 })
 export class AlumnoPage implements OnInit {
+  cursos: any;
 
-  constructor() { }
+  constructor(private dataService : DataService,
+    private almacenamiento : AlmacenamientoService
+  ) { }
 
-  ngOnInit() {
+  
+  async ngOnInit() {
+    await this.almacenamiento.get('userId')
+    this.cursos = await this.dataService.getCursos('userId')
   }
+  
 
+
+
+  
 }
