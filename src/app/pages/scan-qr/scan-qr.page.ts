@@ -23,7 +23,6 @@ export class ScanQrPage implements OnInit {
 
   async ngOnInit() {
     this.profileId = await this.storageService.get('userId')
-    console.log(this.profileId)
   }
 
   async scanQR() {
