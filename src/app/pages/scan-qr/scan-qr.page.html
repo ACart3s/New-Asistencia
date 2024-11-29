@@ -1,16 +1,36 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>scan-qr</ion-title>
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="qr-code-outline" class="title-icon"></ion-icon>
+      Escanear QR
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">scan-qr</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-item>
-    <ion-button (click)="scanQR()">SCANPAPITO</ion-button>
-  </ion-item>
+<ion-content class="ion-padding">
+  <div class="scan-qr-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="scan-outline" class="card-icon"></ion-icon>
+          Escáner de Código QR
+        </ion-card-title>
+        <ion-card-subtitle>
+          Escanea un código QR para registrar tu asistencia
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <div class="scan-button-container">
+          <ion-button expand="block" (click)="scanQR()">
+            <ion-icon name="camera-outline" slot="start"></ion-icon>
+            Escanear Código QR
+          </ion-button>
+        </div>
+        <p class="scan-instructions">
+          Haz clic en el botón para abrir la cámara y escanear un código QR.
+        </p>
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>

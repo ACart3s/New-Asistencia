@@ -1,0 +1,23 @@
+.title-icon, .card-icon {
+    margin-right: 8px;
+  }
+  
+  .scan-qr-container {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .scan-button-container {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .scan-instructions {
+    text-align: center;
+    font-size: 14px;
+    color: var(--ion-color-medium);
+  }
+  
+  ion-button {
+    --border-radius: 8px;
+  }

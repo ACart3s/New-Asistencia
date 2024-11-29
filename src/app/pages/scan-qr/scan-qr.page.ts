@@ -39,7 +39,7 @@ export class ScanQrPage implements OnInit {
       this.resultado = data;
       const{data: asistencia ,error} =  await this.dataService.registrarAsistencia(this.profileId,this.resultado)
       if (error) {
-        await this.showAlert('error','Error al registrar asistencia')
+        await this.showAlert('Error','Error al registrar asistencia')
         return
       }
       if (asistencia) {
