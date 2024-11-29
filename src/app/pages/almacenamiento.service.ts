@@ -23,5 +23,9 @@ export class AlmacenamientoService {
   public set(key: string, value: any) {
     this._storage?.set(key, value);
   }
+  async get(key: string){
+    if (!this._storage) await this.init()
+      return await this._storage?.get(key)
+  }
 }
 

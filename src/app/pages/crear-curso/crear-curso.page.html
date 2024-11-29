@@ -1,0 +1,54 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>Crear Curso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <form class="ion-padding">
+    <div class="form-container">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>
+            <ion-icon name="book-outline" class="ion-margin-end"></ion-icon>
+            Nuevo Curso
+          </ion-card-title>
+          <ion-card-subtitle>
+            Complete los detalles del curso
+          </ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          <ion-list>
+            <ion-item>
+              <ion-label position="stacked"
+                >Nombre del curso
+                <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input
+                type="text"
+                placeholder="Ej: Introducción a la Programación"
+              >
+              </ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="stacked"
+                >Código del curso
+                <ion-text color="danger">*</ion-text></ion-label
+              >
+              <ion-input type="text" placeholder="Ej: CS101"> </ion-input>
+            </ion-item>
+          </ion-list>
+
+          <div class="ion-padding">
+            <ion-button expand="block" type="submit" class="ion-margin-top">
+              <ion-icon name="add-circle-outline" slot="start"></ion-icon>
+              Crear Curso
+            </ion-button>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </form>
+</ion-content>

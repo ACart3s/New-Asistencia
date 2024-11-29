@@ -18,22 +18,6 @@ export class DataService {
       environment.supabaseKey
     );
   }
-  //Digame que esta funcion no la hice yo po
-  registrarAsistencia(
-    schedule: Date,
-    idAsignatura: number,
-    idAsistencia: number
-  ) {
-    return this.supabase
-      .from('Class')
-      .insert({
-        schedule: schedule,
-        idAsignatura: idAsignatura,
-        idAsistencia: idAsistencia,
-      })
-      .select('*')
-      .single();
-  }
   //O ESTO PARECE UN COMENTARIO DE CHAT GPT
   verAsistencia(idUsuario: string) {
     return this.supabase.from('Class').select('*').eq('idUsuario', 'idStudent');
@@ -42,17 +26,40 @@ export class DataService {
   //O UN COMENTARIO QUE HARIA OTRA PERSONA
   //Ver cursos de estudiante
   verCursos(idUsuario: string) {
-    return this.supabase
-      .from('subject')
-      .select('*')
-      .eq('idStudent', idUsuario);
+    return this.supabase.from('subject').select('*').eq('idStudent', idUsuario);
   }
-//Ver cursos de profesor
-  mostrarAsignaturas(idProfesor: string){
+  //Ver cursos de profesor
+  mostrarAsignaturas(idProfesor: string) {
     return this.supabase
       .from('subject')
       .select('*')
-      .eq('idDocente', idProfesor);
+      .eq('idProfessor', idProfesor);
+  }
+  //Insertar curso
+  crearCurso(name: string, code: string) {
+    return this.supabase
+      .from('Subject')
+      .insert({
+        name: name,
+        code: code,
+      })
+      .select('*')
+      .single();
+  }
+  //Crear clase 
+  crearClase(schedule : Date, idAsignatura : string){
+    return this.supabase.from('Class').insert({
+      schedule : schedule,
+      idSubject : idAsignatura
+    }). select('*').single();
+  }
+  //Registrar asistencia 
+  registrarAsistencia(idStudent: string ,idClass: string){
+    return this.supabase.from('Asistance').insert({
+      status : true,
+      idClass : idClass,
+      idStudent : idStudent
+    }).select('*').single();
   }
   
 
