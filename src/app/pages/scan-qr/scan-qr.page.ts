@@ -36,7 +36,6 @@ export class ScanQrPage implements OnInit {
     await modal.present();
     const { data } = await modal.onWillDismiss();
     if (data) {
-
       this.resultado = data;
       const{data: asistencia ,error} =  await this.dataService.registrarAsistencia(this.profileId,this.resultado)
       if (error) {
