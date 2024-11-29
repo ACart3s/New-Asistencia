@@ -20,7 +20,7 @@ export class DataService {
   }
   //O ESTO PARECE UN COMENTARIO DE CHAT GPT
   verAsistencia(idUsuario: string) {
-    return this.supabase.from('Class').select('*').eq('idUsuario', 'idStudent');
+    return this.supabase.from('Asistance').select('*,Class(*)').eq('idStudent', idUsuario);
   }
 
   //O UN COMENTARIO QUE HARIA OTRA PERSONA
@@ -46,21 +46,36 @@ export class DataService {
       .select('*')
       .single();
   }
-  //Crear clase 
-  crearClase(schedule : Date, idAsignatura : string){
-    return this.supabase.from('Class').insert({
-      schedule : schedule,
-      idSubject : idAsignatura
-    }). select('*').single();
+  //Crear clase
+  crearClase(schedule: Date, idAsignatura: string) {
+    return this.supabase
+      .from('Class')
+      .insert({
+        schedule: schedule,
+        idSubject: idAsignatura,
+      })
+      .select('*')
+      .single();
   }
-  //Registrar asistencia 
-  registrarAsistencia(idStudent: string ,idClass: string){
-    return this.supabase.from('Asistance').insert({
-      status : true,
-      idClass : idClass,
-      idStudent : idStudent
-    }).select('*').single();
+  //Registrar asistencia
+  registrarAsistencia(idStudent: string, idClass: string) {
+    return this.supabase
+      .from('Asistance')
+      .insert({
+        status: true,
+        idClass: idClass,
+        idStudent: idStudent,
+      })
+      .select('*')
+      .single();
   }
-  
 
+  getCursos(idStudent: string) {
+    {
+      return this.supabase
+        .from('lista')
+        .select('*, Subject(*)')
+        .eq('idStudent', idStudent);
+    }
+  }
 }
