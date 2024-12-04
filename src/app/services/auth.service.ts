@@ -8,15 +8,15 @@ import {
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { DataService } from './data.service';
+import { AlmacenamientoService } from '../pages/almacenamiento.service';
 
 interface SignUpCredentials {
   email: string;
   password: string;
-  metadata?: {
-    name?: string;
-    last_name?: string;
-    rut?: string;
-    is_student?: boolean;
+  metadata: {
+    name: string;
+    is_student: boolean;
   };
 }
 interface SignUpResponse {
@@ -27,14 +27,18 @@ interface SignUpResponse {
   error: Error | null;
 }
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private supabase: SupabaseClient;
   private currentUser: BehaviorSubject<User | null> =
     new BehaviorSubject<User | null>(null);
 
-  constructor(private router: Router) {
+  constructor(
+    private router: Router,
+    private dataService: DataService,
+    private almacenamiento: AlmacenamientoService
+  ) {
     this.supabase = createClient(
       environment.supabaseURL,
       environment.supabaseKey
@@ -65,6 +69,31 @@ export class AuthService {
       });
 
       if (error) throw error;
+      if (!data.user) throw error;
+      if ((await this.almacenamiento.exists('username')) != null) {
+        await this.almacenamiento.remove('username');
+      }
+
+      if (credentials.metadata?.is_student) {
+        const { data: student, error: studenterror } =
+          await this.dataService.insertStudent(
+            data.user.id,
+            credentials.metadata.name,
+            credentials.email
+          );
+
+        if (studenterror) throw error;
+        await this.almacenamiento.set('username', student);
+      } else {
+        const { data: professor, error: professorerror } =
+          await this.dataService.insertProfessor(
+            data.user.id,
+            credentials.metadata.name,
+            credentials.email
+          );
+        if (professorerror) throw error;
+        await this.almacenamiento.set('username', professor);
+      }
 
       return { data, error: null };
     } catch (error) {
@@ -86,8 +115,28 @@ export class AuthService {
     this.currentUser.next(user);
   }
 
-  signIn(credentials: { email: string; password: string }) {
-    return this.supabase.auth.signInWithPassword(credentials);
+  async signIn(credentials: { email: string; password: string }) {
+    const { data, error } = await this.supabase.auth.signInWithPassword(
+      credentials
+    );
+    if (error) throw error;
+    if (data.user) {
+      if (await this.almacenamiento.exists('username')) {
+        await this.almacenamiento.remove('username');
+      }
+      if (data.user.user_metadata['is_student']) {
+        const { data: perfil, error: errorperfil } =
+          await this.dataService.selectStudent(data.user.id);
+        if (errorperfil) throw errorperfil;
+        if (perfil) await this.almacenamiento.set('username', perfil);
+      } else {
+        const { data: perfil, error: errorperfil } =
+          await this.dataService.selectProfessor(data.user.id);
+        if (errorperfil) throw errorperfil;
+        if (perfil) await this.almacenamiento.set('username', perfil);
+      }
+    }
+    return { data, error };
   }
 
   signOut() {
@@ -97,5 +146,4 @@ export class AuthService {
   getCurrentUser(): Observable<User | null> {
     return this.currentUser.asObservable();
   }
-
 }

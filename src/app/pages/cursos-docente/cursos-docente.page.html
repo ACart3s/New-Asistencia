@@ -22,21 +22,18 @@
 
       <ion-card-content>
         <ion-list>
-          <ion-item class="custom-select">
+          <ion-item class="custom-select" >
             <ion-label position="stacked">Curso Actual</ion-label>
-            <ion-select 
+            <ion-select (ionChange) = 'seleccion($event)' 
               interface="action-sheet"
               placeholder="Seleccione un curso"
               class="select-large">
-              <ion-select-option value="1">Introducción a la Programación</ion-select-option>
-              <ion-select-option value="2">Desarrollo Web Avanzado</ion-select-option>
-              <ion-select-option value="3">Bases de Datos</ion-select-option>
-              <ion-select-option value="4">Inteligencia Artificial</ion-select-option>
+              <ion-select-option *ngFor="let curso of cursos"[value]="curso.id">{{curso.name}}</ion-select-option>
             </ion-select>
           </ion-item>
         </ion-list>
 
-        <ion-button expand="block" class="ion-margin-top">
+        <ion-button expand="block" class="ion-margin-top" routerLink="/ingresar-curso/{{seleccio}}">
           <ion-icon name="enter-outline" slot="start"></ion-icon>
           Ingresar al Curso
         </ion-button>

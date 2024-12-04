@@ -20,7 +20,10 @@ export class DataService {
   }
   //O ESTO PARECE UN COMENTARIO DE CHAT GPT
   verAsistencia(idUsuario: string) {
-    return this.supabase.from('Asistance').select('*,Class(*)').eq('idStudent', idUsuario);
+    return this.supabase
+      .from('asistance')
+      .select('*,Class(*)')
+      .eq('idstudent', idUsuario);
   }
 
   //O UN COMENTARIO QUE HARIA OTRA PERSONA
@@ -36,12 +39,13 @@ export class DataService {
       .eq('idProfessor', idProfesor);
   }
   //Insertar curso
-  crearCurso(name: string, code: string) {
+  crearCurso(name: string, code: string, idProfesor: string) {
     return this.supabase
       .from('Subject')
       .insert({
         name: name,
         code: code,
+        idProfessor: idProfesor,
       })
       .select('*')
       .single();
@@ -60,12 +64,12 @@ export class DataService {
   //Registrar asistencia
   registrarAsistencia(idStudent: string, idClass: string) {
     return this.supabase
-      .from('Asistance')
-      .insert({
+      .from('asistance')
+      .update({
         status: true,
-        idClass: idClass,
-        idStudent: idStudent,
       })
+      .eq(idClass, idClass)
+      .eq(idStudent, idStudent)
       .select('*')
       .single();
   }
@@ -77,5 +81,55 @@ export class DataService {
         .select('*, Subject(*)')
         .eq('idStudent', idStudent);
     }
+  }
+  insertStudent(idStudent: string, name: string, email: string) {
+    return this.supabase
+      .from('student')
+      .insert({
+        id: idStudent,
+        name: name,
+        email: email,
+      })
+      .select('*')
+      .single();
+  }
+  insertProfessor(idProfessor: string, name: string, email: string) {
+    return this.supabase
+      .from('professor')
+      .insert({
+        idProfessor: idProfessor,
+        name: name,
+        email: email,
+      })
+      .select('*')
+      .single();
+  }
+  selectStudent(idStudent: string) {
+    return this.supabase
+      .from('student')
+      .select('*')
+      .eq('id', idStudent)
+      .single();
+  }
+  selectProfessor(idProfesor: string) {
+    return this.supabase
+      .from('professor')
+      .select('*')
+      .eq('idProfessor', idProfesor)
+      .single();
+  }
+  //OTRO METODO DE AGARRAR LOS CURSOS NO SE PORQUE
+  selectCursos(idProfesor: string) {
+    return this.supabase
+      .from('Subject')
+      .select('*')
+      .eq('idProfessor', idProfesor);
+  }
+  mostrarLista(idSubject: string) {
+    return this.supabase
+      .from('asistance')
+      .select('*,Class(*,Subject(*)),student(*)')
+      .match({ 'Class.idSubject': idSubject })
+      .filter('Class', 'not.is', null);
   }
 }

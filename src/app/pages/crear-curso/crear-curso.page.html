@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding">
-  <form class="ion-padding">
+  <form (ngSubmit)="curso()" class="ion-padding" [formGroup]="cursoForm">
     <div class="form-container">
       <ion-card>
         <ion-card-header>
@@ -27,6 +27,7 @@
               >
               <ion-input
                 type="text"
+                formControlName="name"
                 placeholder="Ej: Introducción a la Programación"
               >
               </ion-input>
@@ -37,7 +38,7 @@
                 >Código del curso
                 <ion-text color="danger">*</ion-text></ion-label
               >
-              <ion-input type="text" placeholder="Ej: CS101"> </ion-input>
+              <ion-input formControlName="code" type="text" placeholder="Ej: CS101"> </ion-input>
             </ion-item>
           </ion-list>
 
