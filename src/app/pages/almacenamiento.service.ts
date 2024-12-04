@@ -27,5 +27,15 @@ export class AlmacenamientoService {
     if (!this._storage) await this.init()
       return await this._storage?.get(key)
   }
+  async remove(key: string){
+    if (!this._storage) await this.init()
+      return await this._storage?.remove(key)
+  }
+  async exists(key: string) {
+    if (!this._storage) await this.init();
+    const keys = await this._storage?.keys();
+    return keys?.includes(key);
+  }
+
 }
 

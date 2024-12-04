@@ -12,7 +12,7 @@ import { Clases } from 'src/supabase';
 //Por ultimo va a revisar el codigo o no?
 
 export class GenerateQrPage implements OnInit {
-  subjectId : string = '596f890c-b0fc-4dcd-a4be-c1d28ce98a97'
+  subjectId : string = '252b0ecd-82e1-49f9-8d3b-b9a78015b28d'
   QrSesion: any;
 
   constructor(private dataService : DataService) {}

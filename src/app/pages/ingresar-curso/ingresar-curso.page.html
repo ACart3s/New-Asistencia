@@ -1,0 +1,47 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="calendar-outline" class="title-icon"></ion-icon>
+      Lista de Asistencia
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="attendance-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="people-outline" class="card-icon"></ion-icon>
+          {{ info.name }} ({{ info.code }})
+        </ion-card-title>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-grid class="attendance-table">
+          <ion-row class="header-row">
+            <ion-col size="8">Nombre del Estudiante</ion-col>
+            <ion-col size="4">Estado</ion-col>
+          </ion-row>
+          <ion-row *ngFor="let student of lista" class="data-row">
+            <ion-col size="8">{{ student.student.name }}</ion-col>
+            <ion-col size="4"
+              ><ion-icon
+                name="checkmark-circle"
+                *ngIf="student.status"
+                class="status-icon present"
+              ></ion-icon>
+              <ion-icon
+                name="square-outline"
+                *ngIf="!student.status"
+                class="status-icon absent"
+              ></ion-icon>
+            </ion-col>
+
+            <!-- Aquí puedes agregar un componente para marcar la asistencia -->
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
