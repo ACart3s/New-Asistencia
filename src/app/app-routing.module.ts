@@ -38,7 +38,8 @@ const routes: Routes = [
   {
     path: 'register',
     loadChildren: () => import('./pages/register/register.module').then( m => m.RegisterPageModule)
-  },  {
+  },
+  {
     path: 'crear-curso',
     loadChildren: () => import('./pages/crear-curso/crear-curso.module').then( m => m.CrearCursoPageModule)
   },
@@ -49,6 +50,10 @@ const routes: Routes = [
   {
     path: 'asistencia',
     loadChildren: () => import('./pages/asistencia/asistencia.module').then( m => m.AsistenciaPageModule)
+  },
+  {
+    path: 'ingresar-curso/:id',
+    loadChildren: () => import('./pages/ingresar-curso/ingresar-curso.module').then( m => m.IngresarCursoPageModule)
   }
 
 
