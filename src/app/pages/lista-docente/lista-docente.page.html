@@ -1,0 +1,35 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title>
+      <ion-icon name="people-outline" class="title-icon"></ion-icon>
+      Alumnos No Inscritos
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="alumnos-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>
+          <ion-icon name="school-outline" class="card-icon"></ion-icon>
+          Lista de Alumnos
+        </ion-card-title>
+        <ion-card-subtitle>
+          Alumnos no inscritos en la asignatura
+        </ion-card-subtitle>
+      </ion-card-header>
+
+      <ion-card-content>
+        <ion-list>
+          <ion-item button (click)= "inscribirEstudiante(alumno.id)" *ngFor="let alumno of lista" class="custom-item">
+            <ion-label>
+              <h2>{{alumno.name}}</h2>
+              <p>Email: {{alumno.email}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

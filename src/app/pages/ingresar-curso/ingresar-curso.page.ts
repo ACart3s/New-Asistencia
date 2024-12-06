@@ -10,6 +10,7 @@ import { AlertController } from '@ionic/angular';
   styleUrls: ['./ingresar-curso.page.scss'],
 })
 export class IngresarCursoPage implements OnInit {
+  subjectId : any;
   lista: any;
   info: any = {name:'', code : ''};
 
@@ -23,6 +24,7 @@ export class IngresarCursoPage implements OnInit {
   async ngOnInit() {
     const subjectId = this.activeRouted.snapshot.paramMap.get('id');
     if (!subjectId) return;
+    this.subjectId = subjectId;
     const { data, error } = await this.dataService.mostrarLista(subjectId);
     if (error) {
       console.log(error);
