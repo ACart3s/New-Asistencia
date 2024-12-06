@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/home/home.module').then(m => m.HomePageModule)
   },
   {
-    path: 'generate-qr',
+    path: 'generate-qr/:id',
     loadChildren: () => import('./pages/generate-qr/generate-qr.module').then(m => m.GenerateQrPageModule)
   },
   {
@@ -54,7 +54,17 @@ const routes: Routes = [
   {
     path: 'ingresar-curso/:id',
     loadChildren: () => import('./pages/ingresar-curso/ingresar-curso.module').then( m => m.IngresarCursoPageModule)
+  },
+  {
+    path: 'lista-docente/:id',
+    loadChildren: () => import('./pages/lista-docente/lista-docente.module').then( m => m.ListaDocentePageModule)
+  },
+  {
+    path: 'cursos-asistencia',
+    loadChildren: () => import('./pages/cursos-asistencia/cursos-asistencia.module').then( m => m.CursosAsistenciaPageModule)
   }
+
+
 
 
 

@@ -25,8 +25,8 @@
           </ion-row>
           <ion-row *ngFor="let student of lista" class="data-row">
             <ion-col size="8">{{ student.student.name }}</ion-col>
-            <ion-col size="4"
-              ><ion-icon
+            <ion-col size="4">
+              <ion-icon
                 name="checkmark-circle"
                 *ngIf="student.status"
                 class="status-icon present"
@@ -43,5 +43,10 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
+
+    <ion-button expand="block" class="ion-margin-top" routerLink="/lista-docente/{{subjectId}}">
+      <ion-icon name="arrow-forward-outline" slot="start"></ion-icon>
+      Chanchi-inscripcion
+    </ion-button>
   </div>
 </ion-content>

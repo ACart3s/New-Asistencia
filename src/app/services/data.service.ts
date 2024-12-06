@@ -125,11 +125,45 @@ export class DataService {
       .select('*')
       .eq('idProfessor', idProfesor);
   }
+  //Muestra la lista dependiendo del que el estudiante haya ido a clases
   mostrarLista(idSubject: string) {
     return this.supabase
       .from('asistance')
       .select('*,Class(*,Subject(*)),student(*)')
       .match({ 'Class.idSubject': idSubject })
       .filter('Class', 'not.is', null);
+  }
+  //Registro de alumno a nuevo curso
+  registrarCurso(idEstudiante: string, idRamo: string) {
+    return this.supabase
+      .from('lista')
+      .insert({ idStudent: idEstudiante, idSubject: idRamo })
+      .single();
+  }
+  //Devuelve los inscritos en una asignatura
+  mostrarInscritos(idRamo: string) {
+    return this.supabase.from('lista').select('*').eq('idSubject', idRamo);
+  }
+  //Devuelve la lista de un profesor
+  seleccionarRamo(idAsignatura: string) {
+    return this.supabase
+      .from('lista')
+      .select('*,student(*)')
+      .eq('idSubject', idAsignatura);
+  }
+  //Recuperar a todos los estudiantes que no esten inscritos en una asignatura
+  async alumnosnoAsignaturas(idRamo: string) {
+    const inscritos = (
+      await this.supabase
+        .from('lista')
+        .select('idStudent')
+        .eq('idSubject', idRamo)
+    ).data;
+    const ids = inscritos?.map((student: any) => student.idStudent) || [];
+    console.log(ids);
+    return this.supabase
+      .from('student')
+      .select('*, lista(*)')
+      .not('id', 'in', `(${ids.join(',')})`);
   }
 }
