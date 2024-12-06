@@ -1,11 +1,5 @@
-# Ejemplo app Ionic Sección 3
-### PGY4121 S3 2024
+# Descarga ya tu nueva aplicacion de chanchi-asistencia
 
+![chanchitos](https://github.com/ACart3s/New-Asistencia/blob/main/Chanchitos.png?raw=true)
 
-#### comandos
-Crear páginas en este caso home
-`ionic g page pages/home`
-
-[Personalizar colores](https://ionicframework.com/docs/theming/color-generator)
-
-### actualizado 04-09-2024
+[Descargar](https://github.com/ACart3s/New-Asistencia/releases/download/release/Chanchi-Asistencia.apk)
